@@ -8,9 +8,13 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclc REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(timer_with_context src/timer_with_context.c)
 ament_target_dependencies(timer_with_context rclc)
+
+add_executable(pub_loaned_msg src/pub_loaned_msg.c)
+ament_target_dependencies(pub_loaned_msg.c rclc std_msgs)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

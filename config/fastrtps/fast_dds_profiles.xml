@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+  <profiles>
+    <transport_descriptors>
+      <transport_descriptor>
+        <transport_id>SHM_Transport</transport_id>
+              <type>SHM</type>
+        <maxMessageSize>33554432</maxMessageSize>
+        <segment_size>33554432</segment_size>
+      </transport_descriptor>
+    </transport_descriptors>
+
+    <!-- Participant with Shared Memory Transport -->
+    <participant profile_name="SHM_Participant_Profile">
+        <rtps>
+            <userTransports>
+                <transport_id>SHM_Transport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <propertiesPolicy>
+                <properties>
+                    <property>
+                        <name>fastdds.data_sharing</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+        </rtps>
+    </participant>
+
+            <publisher profile_name="publisher profile" is_default_profile="true">
+            <qos>
+                <publishMode>
+                    <kind>SYNCHRONOUS</kind>
+                </publishMode>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </publisher>
+
+        <subscriber profile_name="subscriber profile" is_default_profile="true">
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </subscriber>
+
+  </profiles>
+</dds>

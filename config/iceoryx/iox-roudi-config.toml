@@ -1,0 +1,10 @@
+[general]
+version = 1
+
+[[segment]]
+
+[[segment.mempool]]
+size = 32
+count = 10000
+
+
