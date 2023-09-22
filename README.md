@@ -6,6 +6,7 @@ Example codes as a complement to rclc/examples
 
 1. [timer_with_context](rclc_example/src/timer_with_context.c)
 2. [publish_with_loaned_msg](rclc_example/src/pub_loaned_msg.c)
+3. [sub_with_context](rclc_example/src/sub_context_callback.c)
 
 ## Build
 
@@ -34,4 +35,4 @@ export RMW_FASTRTPS_USE_QOS_FROM_XML=1
 - [x] timer_with_context
 - [x] publish_with_loaned_msg
 - [ ] subscription_with_loaned_msg
-- [ ] subscription_with_context
+- [x] subscription_with_context
