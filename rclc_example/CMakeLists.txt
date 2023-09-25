@@ -14,7 +14,7 @@ add_executable(timer_with_context src/timer_with_context.c)
 ament_target_dependencies(timer_with_context rclc)
 
 add_executable(pub_loaned_msg src/pub_loaned_msg.c)
-ament_target_dependencies(pub_loaned_msg.c rclc std_msgs)
+ament_target_dependencies(pub_loaned_msg rclc std_msgs)
 
 add_executable(sub_loaned_msg src/sub_loaned_msg.c)
 ament_target_dependencies(sub_loaned_msg rclc std_msgs)
