@@ -97,13 +97,13 @@ $ colcon build --packages-select rclc_example
 ```
 ## dependencies and version
 
-`ros2/rclc:humble` (packages-up-to)
+`ros2/rclc:humble` (packages-up-to rclc)
 
 ## environment
 
 ```bash
 $ source /opt/ros2/humble/setup.bash
-$ source ${rclc}/install/setup.bash
+source source {rclc}/install/setup.bash
 $ source install/setup.bash
 
 # for fastrtps's zero copy, in your rclc_example workspace
@@ -122,10 +122,6 @@ In sub_callback: loaned_msg data: 0.000000
 
 - [x] timer_with_context
 - [x] publish_with_loaned_msg
-<<<<<<< HEAD
 - [x] subscription_with_loaned_msg
 - [ ] subscription_with_context
-=======
-- [ ] subscription_with_loaned_msg
-- [x] subscription_with_context
->>>>>>> main
+
