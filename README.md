@@ -1,6 +1,8 @@
 # rclc_example
 
 Example codes as a complement to rclc/examples
+ROS2 Distro: `Humble`
+
 
 ## Examples
 
