@@ -3,11 +3,19 @@
 #include <std_msgs/msg/float32.h>
 #include <stdio.h>
 
+rcl_subscription_t my_sub;
+
 void my_sub_callback(const void *msgin) {
   const std_msgs__msg__Float32 *loaned_msg = (const std_msgs__msg__Float32 *)
       msgin; /* since the loaned_msg is token from rmw, don't modify it, use it
                 as an input*/
   printf("In sub_callback: loaned_msg data: %f\n", loaned_msg->data);
+  // /* return loaned message to rmw*/
+  // rcl_ret_t rc = rcl_return_loaned_message_from_subscription(&my_sub,
+  //                                                            (void *) loaned_msg);
+  // if (rc != RCL_RET_OK) {
+  //   printf("Error in return loaned message. %d\n", rc);
+  // }
 }
 
 int main(int argc, const char *const *argv) {
@@ -40,7 +48,7 @@ int main(int argc, const char *const *argv) {
       ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32);
 
   // create subscription
-  rcl_subscription_t my_sub = rcl_get_zero_initialized_subscription();
+  my_sub = rcl_get_zero_initialized_subscription();
   rc = rclc_subscription_init_default(&my_sub, &my_node, my_type_support,
                                       topic_name);
 
