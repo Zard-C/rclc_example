@@ -54,7 +54,7 @@ $ colcon build --packages-select rclc_example
 ```
 ## dependencies and version
 
-`ros2/rclc:humble` (packages-up-to rclc)
+[rclc](https://github.com/Zard-C/rclc)
 
 ## environment
 
