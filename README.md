@@ -81,5 +81,5 @@ In sub_callback: loaned_msg data: 0.000000
 - [x] timer_with_context
 - [x] publish_with_loaned_msg
 - [x] subscription_with_loaned_msg
-- [ ] subscription_with_context
+- [x] subscription_with_context
 
