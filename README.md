@@ -9,6 +9,7 @@ ROS2 Distro: `Humble`
 1. [timer_with_context](rclc_example/src/timer_with_context.c)
 2. [publish_with_loaned_msg](rclc_example/src/pub_loaned_msg.c)
 3. [subscription_with_loaned_msg](rclc_example/src/sub_loaned_msg.c)
+4. [subscription with context](rclc_example/src/sub_context_callback.c)
 
 ### prerequisites
 
