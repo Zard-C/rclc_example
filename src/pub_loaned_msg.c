@@ -19,24 +19,21 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
         void *loaned_msg = NULL;
         rcl_ret_t rc = rmw_borrow_loaned_message(rmw_publisher, my_type_support, &loaned_msg);
 
-        if (rc == RCL_RET_OK && loaned_msg != NULL)
+        if (rc != RCL_RET_OK || loaned_msg == NULL)
         {
-            RCUTILS_LOG_INFO("Loan message from rmw success.\n");
+            RCUTILS_LOG_ERROR("Error rmw_borrow_loaned_message");
         }
-        else
-        {
-            RCUTILS_LOG_ERROR("Loan message from rmw failed\n");
-        }
+
         ((std_msgs__msg__Float32 *)loaned_msg)->data = 1.0;
         // This pub function will return the loaned message to rmw.
         rc = rcl_publish_loaned_message(&my_pub, loaned_msg, NULL);
         if (rc != RCL_RET_OK)
         {
-            RCUTILS_LOG_ERROR("Error rcl_publish_loaned_message\n");
+            RCUTILS_LOG_ERROR("Error rcl_publish_loaned_message");
         }
         else
         {
-            RCUTILS_LOG_INFO("Publish Loaned Message Success!\n");
+            RCUTILS_LOG_INFO("Publish Loaned Message %f success", ((std_msgs__msg__Float32 *)loaned_msg)->data);
         }
     }
 }

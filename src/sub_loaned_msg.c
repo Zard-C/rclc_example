@@ -10,7 +10,7 @@ void my_sub_callback(const void *msgin)
     const std_msgs__msg__Float32 *loaned_msg =
         (const std_msgs__msg__Float32 *)msgin; /* since the loaned_msg is token from rmw, don't modify it, use it
                                                   as an input*/
-    printf("In sub_callback: loaned_msg data: %f\n", loaned_msg->data);
+    RCUTILS_LOG_INFO("In sub_callback: loaned_msg data: %f", loaned_msg->data);
     // /* return loaned message to rmw*/
     // rcl_ret_t rc = rcl_return_loaned_message_from_subscription(&my_sub,
     //                                                            (void *) loaned_msg);
