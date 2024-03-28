@@ -19,6 +19,15 @@ ament_target_dependencies(pub_loaned_msg rclc std_msgs)
 add_executable(sub_loaned_msg src/sub_loaned_msg.c)
 ament_target_dependencies(sub_loaned_msg rclc std_msgs)
 
+install(TARGETS
+  timer_with_context
+  pub_loaned_msg
+  sub_loaned_msg
+  DESTINATION bin/${PROJECT_NAME})
+
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
