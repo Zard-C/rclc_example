@@ -25,7 +25,7 @@ To use `subscription_with_loaned_msg`, we need to add msg_loan in rclc/executor.
 
 [return loaned message](https://github.com/Zard-C/rclc_example/blob/main/rclc_example/src/sub_loaned_msg.c)
 
-This change is already on branch humble of [my fork of rclc](https://github.com/Zard-C/rclc),
+This change is already on branch `humble_add_msg_loan_in_sub_callback` of [my fork of ros2/rclc](https://github.com/Zard-C/rclc),
 
 currently, you can use my repo [rclc](https://github.com/Zard-C/rclc) to test this feature
 
@@ -60,7 +60,7 @@ colcon build --packages-select rclc_example
 
 ## dependencies and version
 
-[rclc](https://github.com/Zard-C/rclc)
+[Zard-C/rclc](https://github.com/Zard-C/rclc)
 
 ## environment
 
