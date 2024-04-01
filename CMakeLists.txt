@@ -19,10 +19,14 @@ ament_target_dependencies(pub_loaned_msg rclc std_msgs)
 add_executable(sub_loaned_msg src/sub_loaned_msg.c)
 ament_target_dependencies(sub_loaned_msg rclc std_msgs)
 
+add_executable(sub_context_callback src/sub_context_callback.c)
+ament_target_dependencies(sub_context_callback rclc std_msgs)
+
 install(TARGETS
   timer_with_context
   pub_loaned_msg
   sub_loaned_msg
+  sub_context_callback
   DESTINATION bin/${PROJECT_NAME})
 
 install(DIRECTORY
