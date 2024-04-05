@@ -12,29 +12,25 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
     (void)last_call_time;
     (void)timer;
 
-    bool ret = rcl_publisher_can_loan_messages(&my_pub);
-    if (ret)
+    rmw_publisher_t *rmw_publisher = rcl_publisher_get_rmw_handle(&my_pub);
+    void *loaned_msg = NULL;
+    rcl_ret_t rc = rmw_borrow_loaned_message(rmw_publisher, my_type_support, &loaned_msg);
+
+    if (rc != RCL_RET_OK || loaned_msg == NULL)
     {
-        rmw_publisher_t *rmw_publisher = rcl_publisher_get_rmw_handle(&my_pub);
-        void *loaned_msg = NULL;
-        rcl_ret_t rc = rmw_borrow_loaned_message(rmw_publisher, my_type_support, &loaned_msg);
+        RCUTILS_LOG_ERROR("Error rmw_borrow_loaned_message");
+    }
 
-        if (rc != RCL_RET_OK || loaned_msg == NULL)
-        {
-            RCUTILS_LOG_ERROR("Error rmw_borrow_loaned_message");
-        }
-
-        ((std_msgs__msg__Float32 *)loaned_msg)->data = 1.0;
-        // This pub function will return the loaned message to rmw.
-        rc = rcl_publish_loaned_message(&my_pub, loaned_msg, NULL);
-        if (rc != RCL_RET_OK)
-        {
-            RCUTILS_LOG_ERROR("Error rcl_publish_loaned_message");
-        }
-        else
-        {
-            RCUTILS_LOG_INFO("Publish Loaned Message %f success", ((std_msgs__msg__Float32 *)loaned_msg)->data);
-        }
+    ((std_msgs__msg__Float32 *)loaned_msg)->data = 1.0;
+    // This pub function will return the loaned message to rmw.
+    rc = rcl_publish_loaned_message(&my_pub, loaned_msg, NULL);
+    if (rc != RCL_RET_OK)
+    {
+        RCUTILS_LOG_ERROR("Error rcl_publish_loaned_message");
+    }
+    else
+    {
+        RCUTILS_LOG_INFO("Publish Loaned Message %f success", ((std_msgs__msg__Float32 *)loaned_msg)->data);
     }
 }
 
@@ -75,6 +71,13 @@ int main(int argc, const char *const *argv)
     if (RCL_RET_OK != rc)
     {
         printf("Error in rclc_publisher_init_default %s.\n", topic_name);
+        return -1;
+    }
+
+    rc = rcl_publisher_can_loan_messages(&my_pub);
+    if (!rc)
+    {
+        printf("Can not loan message form publisher, check the data type and dds config\n");
         return -1;
     }
 
